@@ -10,16 +10,13 @@ import LikeButton from "./components/LikeButton";
 import { useState } from "react";
 import ClickablePicture from "./components/ClickablePicture";
 import Dice from "./components/Dice";
-import "../src/assets/images/dice-empty.png"
-import "../src/assets/images/dice1.png"
-import "../src/assets/images/dice2.png"
-import "../src/assets/images/dice3.png"
-import "../src/assets/images/dice4.png"
-import "../src/assets/images/dice5.png"
-import "../src/assets/images/dice6.png"
-
-
-
+import "../src/assets/images/dice-empty.png";
+import "../src/assets/images/dice1.png";
+import "../src/assets/images/dice2.png";
+import "../src/assets/images/dice3.png";
+import "../src/assets/images/dice4.png";
+import "../src/assets/images/dice5.png";
+import "../src/assets/images/dice6.png";
 
 function App() {
   const [likes, setLikes] = useState(0);
@@ -34,17 +31,32 @@ function App() {
       return bgColorOpt[nextIndex];
     });
   };
-  const imgOpt = ["https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e9479d19288123.562d7db2dce3d.jpg", "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7b6da619288123.562d7db32882e.jpg"];
-  const [imgSwitch, setImgSwitch] = useState(true)
+  const imgOpt = [
+    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e9479d19288123.562d7db2dce3d.jpg",
+    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7b6da619288123.562d7db32882e.jpg",
+  ];
+  const [imgSwitch, setImgSwitch] = useState(true);
   const changeImg = () => {
-    setImgSwitch((imgSwitch)=>!imgSwitch)
-  }
+    setImgSwitch((imgSwitch) => !imgSwitch);
+  };
 
-  const [diceImg, setDiceImg] = useState("../src/assets/images/dice-empty.png")
+  const [diceImg, setDiceImg] = useState("../src/assets/images/dice-empty.png");
   const changeImgDice = () => {
-    const randomNumber = Math.floor(Math.random()*6) + 1;
-      setDiceImg(`../src/assets/images/dice${randomNumber}.png`);
-  }
+    const randomNumber = Math.floor(Math.random() * 6) + 1;
+    setDiceImg(`../src/assets/images/dice${randomNumber}.png`);
+  };
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handleLeftClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+  const handleRightClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <div className="App">
@@ -148,11 +160,15 @@ function App() {
         />
       </div>
       <div>
-        <ClickablePicture img={imgSwitch?imgOpt[0]:imgOpt[1]} changeImg={changeImg} />
+        <ClickablePicture
+          img={imgSwitch ? imgOpt[0] : imgOpt[1]}
+          changeImg={changeImg}
+        />
       </div>
       <div>
-        <Dice diceImg={diceImg} changeImgDice={changeImgDice}/>
+        <Dice diceImg={diceImg} changeImgDice={changeImgDice} />
       </div>
+      <div></div>
     </div>
   );
 }

@@ -17,6 +17,10 @@ import "../src/assets/images/dice3.png";
 import "../src/assets/images/dice4.png";
 import "../src/assets/images/dice5.png";
 import "../src/assets/images/dice6.png";
+import Carousel from "./components/Carousel";
+import NumbersTable from "./components/NumbersTable";
+import Facebook from "./components/Facebook";
+import profiles from "../src/data/berlin.json"
 
 function App() {
   const [likes, setLikes] = useState(0);
@@ -47,6 +51,12 @@ function App() {
   };
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const images = [
+    "https://randomuser.me/api/portraits/women/1.jpg",
+    "https://randomuser.me/api/portraits/men/1.jpg",
+    "https://randomuser.me/api/portraits/women/2.jpg",
+    "https://randomuser.me/api/portraits/men/2.jpg",
+  ];
   const handleLeftClick = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
@@ -168,7 +178,22 @@ function App() {
       <div>
         <Dice diceImg={diceImg} changeImgDice={changeImgDice} />
       </div>
-      <div></div>
+      <div>
+      <h1>Image Carousel</h1>
+      <Carousel
+        images={images}
+        currentIndex={currentIndex}
+        handleLeftClick={handleLeftClick}
+        handleRightClick={handleRightClick}
+      />
+    </div>
+    <div>
+      <NumbersTable limit={8}/>
+    </div>
+    <div>
+      <Facebook profiles={profiles}/>
+    </div>
+
     </div>
   );
 }

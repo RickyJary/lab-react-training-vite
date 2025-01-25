@@ -21,6 +21,8 @@ import Carousel from "./components/Carousel";
 import NumbersTable from "./components/NumbersTable";
 import Facebook from "./components/Facebook";
 import profiles from "../src/data/berlin.json"
+import SignupPage from "./components/SignupPage";
+import RGBColorPicker from "./components/RGBColorPicker";
 
 function App() {
   const [likes, setLikes] = useState(0);
@@ -188,10 +190,17 @@ function App() {
       />
     </div>
     <div>
-      <NumbersTable limit={8}/>
+      <NumbersTable limit={10}/>
     </div>
     <div>
       <Facebook profiles={profiles}/>
+    </div>
+    <div>
+      <SignupPage />
+    </div>
+
+    <div>
+      <RGBColorPicker />
     </div>
 
     </div>
@@ -199,3 +208,5 @@ function App() {
 }
 
 export default App;
+
+
